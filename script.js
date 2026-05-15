@@ -265,6 +265,14 @@ toggleBtn.addEventListener('click', () => {
 
 // Keyboard Support
 window.addEventListener('keydown', e => {
+    // Handle Scientific Panel Toggle with Shift
+    if (e.key === 'Shift') {
+        const sciPanel = document.getElementById('scientific-panel');
+        const toggleBtn = document.getElementById('toggle-sci');
+        sciPanel.classList.remove('hidden');
+        toggleBtn.classList.add('active');
+    }
+
     if (e.key >= 0 && e.key <= 9) {
         if (calculator.shouldResetScreen) {
             calculator.currentOperand = '';
@@ -281,6 +289,27 @@ window.addEventListener('keydown', e => {
     if (e.key === '*') calculator.chooseOperation('×');
     if (e.key === '/') calculator.chooseOperation('÷');
     if (e.key === '%') calculator.percent();
+
+    // Scientific Shortcuts (with or without Shift, as requested for "access")
+    if (e.shiftKey) {
+        const key = e.key.toLowerCase();
+        if (key === 's') calculator.appendScientific('sin');
+        if (key === 'c') calculator.appendScientific('cos');
+        if (key === 't') calculator.appendScientific('tan');
+        if (key === 'r') calculator.appendScientific('sqrt');
+        if (key === 'p') calculator.appendScientific('pow');
+        if (e.key === '(') calculator.appendNumber('(');
+        if (e.key === ')') calculator.appendNumber(')');
+    }
     
     calculator.updateDisplay();
+});
+
+window.addEventListener('keyup', e => {
+    if (e.key === 'Shift') {
+        const sciPanel = document.getElementById('scientific-panel');
+        const toggleBtn = document.getElementById('toggle-sci');
+        // Optional: Hide panel on Shift release if you want it to be temporary
+        // For now, let's keep it visible once opened via Shift for better UX
+    }
 });
