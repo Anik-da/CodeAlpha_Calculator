@@ -261,7 +261,7 @@ window.addEventListener('keydown', e => {
     if (e.key === '.') calculator.appendNumber('.');
     if (e.key === '=' || e.key === 'Enter') calculator.compute();
     if (e.key === 'Backspace') calculator.delete();
-    if (e.key === 'Escape') calculator.clear();
+    if (e.key === 'Escape' || e.key === 'Delete') calculator.clear();
     if (e.key === '+') calculator.chooseOperation('+');
     if (e.key === '-') calculator.chooseOperation('-');
     if (e.key === '*') calculator.chooseOperation('×');
