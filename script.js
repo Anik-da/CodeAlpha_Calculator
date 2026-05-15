@@ -122,23 +122,37 @@ class Calculator {
     }
 
     evaluateExpression(expr) {
-        // Safe evaluation mapping
+        // Auto-close parentheses
+        let openParens = (expr.match(/\(/g) || []).length;
+        let closeParens = (expr.match(/\)/g) || []).length;
+        while (openParens > closeParens) {
+            expr += ')';
+            closeParens++;
+        }
+
+        // Map symbols
         let processedExpr = expr
             .replace(/×/g, '*')
             .replace(/÷/g, '/')
-            .replace(/\^/g, '**')
-            .replace(/sin\(/g, 'Math.sin(')
-            .replace(/cos\(/g, 'Math.cos(')
-            .replace(/tan\(/g, 'Math.tan(')
-            .replace(/sqrt\(/g, 'Math.sqrt(');
+            .replace(/\^/g, '**');
 
-        // Basic validation: only numbers, operators, Math functions, and parentheses
-        if (/[^0-9\+\-\*\/\.\(\)Math\s\*\*\,]/.test(processedExpr.replace(/Math\.(sin|cos|tan|sqrt)/g, ''))) {
+        // Validation
+        if (/[^0-9\+\-\*\/\.\(\)\^sin\(\)cos\(\)tan\(\)sqrt\(\)\s\*\*\,]/.test(expr)) {
             throw new Error("Invalid characters");
         }
 
-        // Use Function constructor for a slightly safer eval
-        return new Function(`return ${processedExpr}`)();
+        // Evaluate with degree-to-radian helpers
+        return new Function('Math', `
+            const sin = (x) => Math.sin(x * Math.PI / 180);
+            const cos = (x) => Math.cos(x * Math.PI / 180);
+            const tan = (x) => Math.tan(x * Math.PI / 180);
+            const sqrt = (x) => Math.sqrt(x);
+            try {
+                return ${processedExpr};
+            } catch (e) {
+                return "Error";
+            }
+        `)(Math);
     }
 
     percent() {
