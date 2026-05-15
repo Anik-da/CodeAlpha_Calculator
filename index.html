@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A professional, futuristic glassmorphism calculator with basic and scientific functions.">
+    <title>Quantum Calc | Futuristic Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="calculator-wrapper">
+        <div class="calculator-card glass" id="calculator">
+            <div class="calculator-header">
+                <span class="brand">QUANTUM <span class="accent">CALC</span></span>
+                <button class="toggle-scientific" id="toggle-sci" title="Toggle Scientific Mode">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </button>
+            </div>
+
+            <div class="display">
+                <div class="previous-operand" id="previous-operand"></div>
+                <div class="current-operand" id="current-operand">0</div>
+            </div>
+
+            <div class="button-grid">
+                <!-- Scientific Panel (Initially Hidden) -->
+                <div class="scientific-panel hidden" id="scientific-panel">
+                    <button class="btn sci" data-action="sin">sin</button>
+                    <button class="btn sci" data-action="cos">cos</button>
+                    <button class="btn sci" data-action="tan">tan</button>
+                    <button class="btn sci" data-action="sqrt">√</button>
+                    <button class="btn sci" data-action="pow">xʸ</button>
+                    <button class="btn sci" data-operand="(">(</button>
+                    <button class="btn sci" data-operand=")">)</button>
+                </div>
+
+                <!-- Main Grid -->
+                <button class="btn secondary" data-clear>AC</button>
+                <button class="btn secondary" data-delete>DEL</button>
+                <button class="btn secondary" data-action="percent">%</button>
+                <button class="btn accent-btn" data-operator="÷">÷</button>
+
+                <button class="btn" data-operand="7">7</button>
+                <button class="btn" data-operand="8">8</button>
+                <button class="btn" data-operand="9">9</button>
+                <button class="btn accent-btn" data-operator="×">×</button>
+
+                <button class="btn" data-operand="4">4</button>
+                <button class="btn" data-operand="5">5</button>
+                <button class="btn" data-operand="6">6</button>
+                <button class="btn accent-btn" data-operator="-">-</button>
+
+                <button class="btn" data-operand="1">1</button>
+                <button class="btn" data-operand="2">2</button>
+                <button class="btn" data-operand="3">3</button>
+                <button class="btn accent-btn" data-operator="+">+</button>
+
+                <button class="btn" data-operand="0">0</button>
+                <button class="btn" data-operand=".">.</button>
+                <button class="btn equal-btn" data-equals>=</button>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
