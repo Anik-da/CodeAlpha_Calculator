@@ -81,44 +81,38 @@ class Calculator {
     }
 
     compute() {
-        let computation;
-        let expression = this.currentOperand;
-
-        // If we are using the basic op mode (prev + current)
-        if (this.operation && this.previousOperand !== '') {
-            const prev = parseFloat(this.previousOperand);
-            const current = parseFloat(this.currentOperand);
-            if (isNaN(prev) || isNaN(current)) return;
-
-            switch (this.operation) {
-                case '+': computation = prev + current; break;
-                case '-': computation = prev - current; break;
-                case '×': computation = prev * current; break;
-                case '÷': 
-                    if (current === 0) {
-                        alert("Cannot divide by zero");
-                        this.clear();
-                        return;
-                    }
-                    computation = prev / current; 
-                    break;
-                default: return;
-            }
-            this.currentOperand = computation.toString();
-            this.operation = undefined;
-            this.previousOperand = '';
-        } else {
-            // Handle scientific/complex expressions
-            try {
-                const result = this.evaluateExpression(this.currentOperand);
-                this.previousOperand = this.currentOperand + ' =';
-                this.currentOperand = result.toString();
-                this.shouldResetScreen = true;
-            } catch (e) {
-                this.currentOperand = 'Error';
-                this.shouldResetScreen = true;
-            }
+        if (this.currentOperand === '' && this.previousOperand === '') return;
+        
+        // Handle case where user just types "10 + ="
+        if (this.currentOperand === '' && this.operation) {
+            this.currentOperand = this.previousOperand;
         }
+
+        let fullExpr = this.currentOperand;
+        if (this.previousOperand !== '' && this.operation) {
+            fullExpr = `${this.previousOperand}${this.operation}${this.currentOperand}`;
+        }
+
+        try {
+            let result = this.evaluateExpression(fullExpr);
+            
+            // Round to handle floating point precision (e.g. 0.1 + 0.2 or cos(60))
+            if (typeof result === 'number' && !isNaN(result)) {
+                if (Math.abs(result) > 1e12 || (Math.abs(result) < 1e-10 && result !== 0)) {
+                    result = parseFloat(result.toPrecision(10));
+                } else {
+                    result = parseFloat(result.toFixed(10));
+                }
+            }
+            
+            this.currentOperand = result.toString();
+        } catch (e) {
+            this.currentOperand = "Error";
+        }
+        
+        this.operation = undefined;
+        this.previousOperand = '';
+        this.shouldResetScreen = true;
     }
 
     evaluateExpression(expr) {
