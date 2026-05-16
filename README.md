@@ -1,9 +1,16 @@
-# Quantum Calc - Futuristic Glassmorphism Calculator
+# CodeAlpha - Futuristic Glassmorphism Calculator
 
-A professional, responsive, and futuristic-looking calculator web application built with HTML, CSS, and JavaScript. Featuring a high-end initialization sequence and advanced calculation engine.
+A professional, responsive, and futuristic-looking calculator web application built as part of the **CodeAlpha** internship task. This project demonstrates advanced front-end development skills using HTML, CSS, and JavaScript.
 
 ## 🚀 Live Demo
 **[https://codealpha-calculator.web.app](https://codealpha-calculator.web.app)**
+
+## 📋 Task Overview
+This project was developed for **CodeAlpha** to showcase a modern, high-performance calculator with both basic and scientific functionality, emphasizing:
+- **Futuristic UI/UX Design**
+- **Robust Mathematical Logic**
+- **Mobile Responsiveness**
+- **Real-time Deployment**
 
 ## ✨ Key Features
 - **Futuristic Boot Sequence**: Interactive "Initialize System" splash screen for a premium user experience.
@@ -19,7 +26,7 @@ A professional, responsive, and futuristic-looking calculator web application bu
   - Full numeric and operator keypad mapping.
   - **Shift Key Shortcuts**: Hold Shift to access scientific functions instantly (`S` for sin, `C` for cos, etc.).
   - `Delete`/`Escape` for clearing.
-- **Firebase Integrated**: Hosted on Firebase with real-time analytics.
+- **Firebase Integrated**: Hosted on Firebase for professional delivery and analytics.
 
 ## 🛠️ Built With
 - **HTML5**: Semantic structure and SVG integration.
@@ -33,8 +40,5 @@ A professional, responsive, and futuristic-looking calculator web application bu
 - `script.js`: Core calculator logic, keyboard shortcuts, and system initialization.
 - `firebase.json`: Hosting and deployment configuration.
 
-## 📄 License
-This project is open-source and available under the [MIT License](LICENSE).
-
 ---
-Developed with ❤️ by [Anik-da](https://github.com/Anik-da)
+Developed as part of the **CodeAlpha** Internship by [Anik-da](https://github.com/Anik-da)
