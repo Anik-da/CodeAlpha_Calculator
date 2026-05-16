@@ -311,5 +311,28 @@ window.addEventListener('keyup', e => {
         const toggleBtn = document.getElementById('toggle-sci');
         // Optional: Hide panel on Shift release if you want it to be temporary
         // For now, let's keep it visible once opened via Shift for better UX
+// System Initialization
+document.addEventListener('DOMContentLoaded', () => {
+    const startBtn = document.getElementById('start-btn');
+    const splashScreen = document.getElementById('splash-screen');
+    const mainCalculator = document.getElementById('main-calculator');
+
+    if (startBtn && splashScreen && mainCalculator) {
+        startBtn.addEventListener('click', () => {
+            // Play a sound effect or trigger haptic if desired (omitted for standard web)
+            splashScreen.classList.add('fade-out');
+            
+            // Reveal calculator with a slight delay for smooth transition
+            setTimeout(() => {
+                mainCalculator.classList.remove('hidden');
+                // Optional: trigger an entry animation for the calculator card
+                document.querySelector('.calculator-card').style.animation = 'fadeInUp 0.8s ease-out';
+            }, 300);
+
+            // Completely hide splash after animation finishes
+            setTimeout(() => {
+                splashScreen.classList.add('hidden');
+            }, 1100);
+        });
     }
 });
