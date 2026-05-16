@@ -309,8 +309,9 @@ window.addEventListener('keyup', e => {
     if (e.key === 'Shift') {
         const sciPanel = document.getElementById('scientific-panel');
         const toggleBtn = document.getElementById('toggle-sci');
-        // Optional: Hide panel on Shift release if you want it to be temporary
-        // For now, let's keep it visible once opened via Shift for better UX
+    }
+});
+
 // System Initialization
 document.addEventListener('DOMContentLoaded', () => {
     const startBtn = document.getElementById('start-btn');
